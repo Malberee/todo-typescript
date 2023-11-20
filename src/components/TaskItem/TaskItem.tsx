@@ -1,6 +1,13 @@
 import { Task } from '../App'
 
-import { TaskItemWrapper, DeleteBtn, CompletedState } from './TaskItem.styled'
+import PriorityLabel from '../PriorityLabel'
+
+import {
+  TaskItemWrapper,
+  DeleteBtn,
+  CompletedState,
+  TaskText,
+} from './TaskItem.styled'
 
 interface TaskItemProps {
   task: Task
@@ -11,7 +18,6 @@ interface TaskItemProps {
 const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
   return (
     <TaskItemWrapper>
-      <p>{task.text}</p>
       <CompletedState>
         <label>
           <input
@@ -19,9 +25,10 @@ const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
             checked={task.completed}
             onChange={() => toggleCompleted(task.id)}
           />
-          {task.completed ? 'Completed' : 'Not completed'}
         </label>
+        <PriorityLabel priority={task.priority} />
       </CompletedState>
+      <TaskText completed={task.completed}>{task.text}</TaskText>
       <DeleteBtn type="button" onClick={() => deleteTask(task.id)}>
         Delete
       </DeleteBtn>

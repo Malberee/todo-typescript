@@ -4,17 +4,19 @@ import TaskList from './TaskList'
 
 import './App.scss'
 
+export type PriorityLevelType = 'low' | 'medium' | 'high'
 export interface Task {
   id: number
   text: string
   completed: boolean
+  priority: PriorityLevelType
 }
 
 const App = () => {
   const [tasks, setTasks] = useState<Task[]>([])
 
-  const addTask = (text: string) => {
-    const newTodo = { id: Date.now(), text, completed: false }
+  const addTask = (text: string, priority: PriorityLevelType) => {
+    const newTodo = { id: Date.now(), text, completed: false, priority }
     setTasks([...tasks, newTodo])
   }
 

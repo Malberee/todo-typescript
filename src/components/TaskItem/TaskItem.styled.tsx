@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const TaskItemWrapper = styled.div`
+export const TaskItemWrapper = styled.li`
   padding: 10px;
   border-radius: 10px;
 
@@ -10,6 +10,16 @@ export const TaskItemWrapper = styled.div`
 
   background-color: #e9e9e9;
 `
+
+interface TaskTextProps {
+  completed: boolean
+}
+
+export const TaskText = styled.p<TaskTextProps>(({ completed }) => {
+  return css`
+    text-decoration: ${completed ? 'line-through' : 'none'};
+  `
+})
 
 export const DeleteBtn = styled.button`
   height: 40px;
@@ -25,11 +35,12 @@ export const DeleteBtn = styled.button`
   transition: background-color 100ms linear;
 
   &:hover {
-    background-color: #e03c30
+    background-color: #e03c30;
   }
 `
 
 export const CompletedState = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px;
 `

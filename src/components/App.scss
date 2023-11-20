@@ -10,20 +10,3 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-p {
-  color: white;
-  font-size: 30px;
-}
-
-a {
-  color: #f8312f;
-  text-decoration: none;
-
-  transition: color 250ms linear;
-
-  &:hover {
-    text-decoration-style: #1c1c1c;
-    color: #008463;
-  }
-}

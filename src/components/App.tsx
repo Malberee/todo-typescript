@@ -1,16 +1,27 @@
+import { useState } from 'react'
+import Form from './Form'
+import TaskList from './TaskList'
+
 import './App.scss'
 
+export interface Task {
+  id: number
+  text: string
+  completed: boolean
+}
+
 const App = () => {
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  const addTask = (text: string) => {
+    const newTodo = { id: Date.now(), text, completed: false }
+    setTasks([...tasks, newTodo])
+  }
 
   return (
     <>
-      <p>
-        🍉 by{' '}
-        <a href="https://github.com/Malberee" target="_blank" rel="noreferrer">
-          Malberee
-        </a>
-        .
-      </p>
+      <Form addTask={addTask} />
+      <TaskList tasks={tasks} />
     </>
   )
 }

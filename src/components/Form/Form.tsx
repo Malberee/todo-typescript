@@ -46,7 +46,7 @@ const Form = ({ addTask }: FormProps) => {
             id="low"
             onChange={handleChangePriority}
           />
-          <PriorityLabel priority="low">Low</PriorityLabel>
+          <PriorityLabel priority="low"/>
         </Label>
         <Label>
           <PriorityRadiobutton
@@ -55,7 +55,7 @@ const Form = ({ addTask }: FormProps) => {
             id="medium"
             onChange={handleChangePriority}
           />
-          <PriorityLabel priority="medium">Medium</PriorityLabel>
+          <PriorityLabel priority="medium"/>
         </Label>
         <Label>
           <PriorityRadiobutton
@@ -64,7 +64,7 @@ const Form = ({ addTask }: FormProps) => {
             id="high"
             onChange={handleChangePriority}
           />
-          <PriorityLabel priority="high">High</PriorityLabel>
+          <PriorityLabel priority="high"/>
         </Label>
       </PrioritiesWrapper>
       <AddTaskBtn type="submit">Add task</AddTaskBtn>

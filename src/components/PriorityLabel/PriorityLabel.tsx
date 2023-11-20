@@ -1,4 +1,3 @@
-import React from 'react'
 import { PriorityLabelWrapper } from './PriorityLabel.styled'
 
 import { PriorityLevelType } from '../App'

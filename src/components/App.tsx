@@ -18,10 +18,26 @@ const App = () => {
     setTasks([...tasks, newTodo])
   }
 
+  const deleteTask = (id: number) => {
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  const toggleCompleted = (id: number) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    )
+  }
+
   return (
     <>
       <Form addTask={addTask} />
-      <TaskList tasks={tasks} />
+      <TaskList
+        tasks={tasks}
+        deleteTask={deleteTask}
+        toggleCompleted={toggleCompleted}
+      />
     </>
   )
 }

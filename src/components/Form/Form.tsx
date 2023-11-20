@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FormWrapper, Input, AddTaskBtn } from './Form.styled'
 
-type FormProps = {
+interface FormProps {
   addTask: (task: string) => void
 }
 
@@ -14,6 +14,7 @@ const Form = ({ addTask }: FormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (value.trim() === '') return
     addTask(value)
   }
 

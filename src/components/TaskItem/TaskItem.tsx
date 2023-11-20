@@ -2,17 +2,31 @@ import React from 'react'
 
 import { Task } from '../App'
 
-import { TaskItemWrapper } from './TaskItem.styled'
+import { TaskItemWrapper, DeleteBtn, CompletedState } from './TaskItem.styled'
 
-type TaskItemProps = {
+interface TaskItemProps {
   task: Task
+  deleteTask: (id: number) => void
+  toggleCompleted: (id: number) => void
 }
 
-const TaskItem = ({ task }: TaskItemProps) => {
+const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
   return (
     <TaskItemWrapper>
-          <p>{task.text}</p>
-          <p>{task.completed ? 'Completed' : 'Not completed'}</p>
+      <p>{task.text}</p>
+      <CompletedState>
+        <label>
+          <input
+            type="checkbox"
+            checked={task.completed}
+            onClick={() => toggleCompleted(task.id)}
+          />
+          {task.completed ? 'Completed' : 'Not completed'}
+        </label>
+      </CompletedState>
+      <DeleteBtn type="button" onClick={() => deleteTask(task.id)}>
+        Delete
+      </DeleteBtn>
     </TaskItemWrapper>
   )
 }

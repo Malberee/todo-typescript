@@ -17,7 +17,7 @@ const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
           <input
             type="checkbox"
             checked={task.completed}
-            onClick={() => toggleCompleted(task.id)}
+            onChange={() => toggleCompleted(task.id)}
           />
           {task.completed ? 'Completed' : 'Not completed'}
         </label>

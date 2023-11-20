@@ -9,15 +9,15 @@ import {
   PriorityRadiobutton,
   AddTaskBtn,
 } from './Form.styled'
-import { PriorityLevelType } from '../App'
+import { PriorityLevel } from '../App'
 
 interface FormProps {
-  addTask: (task: string, priority: PriorityLevelType) => void
+  addTask: (task: string, priority: PriorityLevel) => void
 }
 
 const Form = ({ addTask }: FormProps) => {
   const [value, setValue] = useState('')
-  const [priority, setPriority] = useState<PriorityLevelType>('low')
+  const [priority, setPriority] = useState<PriorityLevel>('low')
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -25,14 +25,15 @@ const Form = ({ addTask }: FormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(e)
-
+    
     if (value.trim() === '') return
     addTask(value, priority)
+    setValue('')
+    setPriority('low')
   }
 
   const handleChangePriority = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPriority(e.target.id as PriorityLevelType)
+    setPriority(e.target.id as PriorityLevel)
   }
 
   return (
@@ -45,8 +46,9 @@ const Form = ({ addTask }: FormProps) => {
             name="priority"
             id="low"
             onChange={handleChangePriority}
+            checked={priority === 'low'}
           />
-          <PriorityLabel priority="low"/>
+          <PriorityLabel priority="low" />
         </Label>
         <Label>
           <PriorityRadiobutton
@@ -54,8 +56,9 @@ const Form = ({ addTask }: FormProps) => {
             name="priority"
             id="medium"
             onChange={handleChangePriority}
+            checked={priority === 'medium'}
           />
-          <PriorityLabel priority="medium"/>
+          <PriorityLabel priority="medium" />
         </Label>
         <Label>
           <PriorityRadiobutton
@@ -63,8 +66,9 @@ const Form = ({ addTask }: FormProps) => {
             name="priority"
             id="high"
             onChange={handleChangePriority}
+            checked={priority === 'high'}
           />
-          <PriorityLabel priority="high"/>
+          <PriorityLabel priority="high" />
         </Label>
       </PrioritiesWrapper>
       <AddTaskBtn type="submit">Add task</AddTaskBtn>

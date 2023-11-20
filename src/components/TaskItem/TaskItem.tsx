@@ -7,6 +7,7 @@ import {
   DeleteBtn,
   CompletedState,
   TaskText,
+  Label
 } from './TaskItem.styled'
 
 interface TaskItemProps {
@@ -19,16 +20,16 @@ const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
   return (
     <TaskItemWrapper>
       <CompletedState>
-        <label>
+        <Label>
           <input
             type="checkbox"
             checked={task.completed}
             onChange={() => toggleCompleted(task.id)}
           />
-        </label>
+        </Label>
         <PriorityLabel priority={task.priority} />
       </CompletedState>
-      <TaskText completed={task.completed}>{task.text}</TaskText>
+      <TaskText completed={`${task.completed}`}>{task.text}</TaskText>
       <DeleteBtn type="button" onClick={() => deleteTask(task.id)}>
         Delete
       </DeleteBtn>

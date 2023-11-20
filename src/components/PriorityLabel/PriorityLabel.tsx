@@ -1,9 +1,9 @@
 import { PriorityLabelWrapper } from './PriorityLabel.styled'
 
-import { PriorityLevelType } from '../App'
+import { PriorityLevel } from '../App'
 
 interface PriorityLabelProps {
-  priority: PriorityLevelType
+  priority: PriorityLevel
 }
 
 const PriorityLabel = ({ priority }: PriorityLabelProps) => {

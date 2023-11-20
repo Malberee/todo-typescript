@@ -12,12 +12,12 @@ export const TaskItemWrapper = styled.li`
 `
 
 interface TaskTextProps {
-  completed: boolean
+  completed: 'true' | 'false'
 }
 
 export const TaskText = styled.p<TaskTextProps>(({ completed }) => {
   return css`
-    text-decoration: ${completed ? 'line-through' : 'none'};
+    text-decoration: ${completed == 'true' ? 'line-through' : 'none'};
   `
 })
 
@@ -43,4 +43,9 @@ export const CompletedState = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+`
+
+export const Label = styled.label`
+  display: flex;
+  align-items: center;
 `

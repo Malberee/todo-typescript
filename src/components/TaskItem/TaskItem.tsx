@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Task } from '../App'
 
 import { TaskItemWrapper, DeleteBtn, CompletedState } from './TaskItem.styled'

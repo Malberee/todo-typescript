@@ -1,6 +1,6 @@
 import { PriorityLabelWrapper } from './PriorityLabel.styled'
 
-import { PriorityLevel } from '../App'
+import { PriorityLevel } from '../../todoSlice'
 
 interface PriorityLabelProps {
   priority: PriorityLevel

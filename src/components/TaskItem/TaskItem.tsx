@@ -1,22 +1,24 @@
-import { Task } from '../App'
+import { Task } from '../../todoSlice'
+import { useDispatch } from 'react-redux'
 
 import PriorityLabel from '../PriorityLabel'
+
+import { deleteTask, toggleCompleted } from '../../todoSlice'
 
 import {
   TaskItemWrapper,
   DeleteBtn,
   CompletedState,
   TaskText,
-  Label
+  Label,
 } from './TaskItem.styled'
 
 interface TaskItemProps {
   task: Task
-  deleteTask: (id: number) => void
-  toggleCompleted: (id: number) => void
 }
 
-const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
+const TaskItem = ({ task }: TaskItemProps) => {
+  const dispatch = useDispatch()
   return (
     <TaskItemWrapper>
       <CompletedState>
@@ -24,13 +26,13 @@ const TaskItem = ({ task, deleteTask, toggleCompleted }: TaskItemProps) => {
           <input
             type="checkbox"
             checked={task.completed}
-            onChange={() => toggleCompleted(task.id)}
+            onChange={() => dispatch(toggleCompleted(task.id))}
           />
         </Label>
         <PriorityLabel priority={task.priority} />
       </CompletedState>
       <TaskText completed={`${task.completed}`}>{task.text}</TaskText>
-      <DeleteBtn type="button" onClick={() => deleteTask(task.id)}>
+      <DeleteBtn type="button" onClick={() => dispatch(deleteTask(task.id))}>
         Delete
       </DeleteBtn>
     </TaskItemWrapper>

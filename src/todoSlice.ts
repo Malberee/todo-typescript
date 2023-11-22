@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type PriorityLevel = 'low' | 'medium' | 'high'
+export type PriorityLevel = 'low' | 'medium' | 'high'
 
-interface Task {
+export interface Task {
   id: number
   text: string
   completed: boolean
@@ -27,10 +27,15 @@ const todoSlice = createSlice({
       })
     },
     deleteTask: (state, action: PayloadAction<number>) => {
-      state.filter((task) => task.id !== action.payload)
-    }
+      return state.filter((task) => task.id !== action.payload)
+    },
+    toggleCompleted: (state, action: PayloadAction<number>) => {
+      return state.map((task) =>
+        task.id === action.payload ? { ...task, completed: !task.completed } : task
+      )
+    },
   },
 })
 
-export const { addTask, deleteTask } = todoSlice.actions
+export const { addTask, deleteTask, toggleCompleted } = todoSlice.actions
 export default todoSlice.reducer

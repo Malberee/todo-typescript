@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { PriorityLevel } from '../App'
+import { PriorityLevel } from '../../todoSlice'
 
 interface PriorityLevelProps {
   priority: PriorityLevel

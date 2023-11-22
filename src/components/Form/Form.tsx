@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { PriorityLevel } from '../../todoSlice'
 import PriorityLabel from '../PriorityLabel'
+import { addTask } from '../../todoSlice'
 import {
   FormWrapper,
   Input,
@@ -9,26 +12,22 @@ import {
   PriorityRadiobutton,
   AddTaskBtn,
 } from './Form.styled'
-import { PriorityLevel } from '../App'
 
-interface FormProps {
-  addTask: (task: string, priority: PriorityLevel) => void
-}
-
-const Form = ({ addTask }: FormProps) => {
-  const [value, setValue] = useState('')
+const Form = () => {
+  const [text, setText] = useState('')
   const [priority, setPriority] = useState<PriorityLevel>('low')
+  const dispatch = useDispatch()
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
+    setText(e.target.value)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (value.trim() === '') return
-    addTask(value, priority)
-    setValue('')
+
+    if (text.trim() === '') return
+    dispatch(addTask({ text, priority }))
+    setText('')
     setPriority('low')
   }
 
@@ -38,7 +37,7 @@ const Form = ({ addTask }: FormProps) => {
 
   return (
     <FormWrapper onSubmit={handleSubmit}>
-      <Input type="text" value={value} onChange={handleInput} />
+      <Input type="text" value={text} onChange={handleInput} />
       <PrioritiesWrapper>
         <Label>
           <PriorityRadiobutton

@@ -1,20 +1,19 @@
-import { Task } from '../App'
+import { useSelector } from 'react-redux'
 
+import { Task } from '../../todoSlice'
 import TaskItem from '../TaskItem'
+
+import { RootState } from '../../store'
 
 import { TaskListWrapper } from './TaskList.styled'
 
-interface TaskListProps {
-  tasks: Task[]
-  deleteTask: (id: number) => void
-  toggleCompleted: (id: number) => void
-}
+const TaskList = () => {
+  const tasks = useSelector((state: RootState) => state.todos)
 
-const TaskList = ({ tasks, deleteTask, toggleCompleted }: TaskListProps) => {
   return (
     <TaskListWrapper>
       {tasks?.map((task: Task) => (
-        <TaskItem key={task.id} task={task} deleteTask={deleteTask} toggleCompleted={toggleCompleted}  />
+        <TaskItem key={task.id} task={task} />
       ))}
     </TaskListWrapper>
   )
